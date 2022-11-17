@@ -1,4 +1,6 @@
-﻿using GeoAPI.Data;
+﻿using AutoMapper;
+using GeoAPI.Data;
+using GeoAPI.Entities;
 using GeoAPI.Interfaces;
 using GeoAPI.Models;
 
@@ -6,76 +8,36 @@ namespace GeoAPI.Services
 {
     public class GeoService : IGeoService
     {
-        public GeoService()
+        private readonly GeoDbContext _dbContext;
+        private readonly IMapper _mapper;
+
+        public GeoService(GeoDbContext dbContext, IMapper mapper)
         {
-            using (var context = new GeoDbContext())
-            {
-                var markers = new List<GeoMarker>
-                {
-                    new GeoMarker
-                    {
-                        Id = Guid.NewGuid(),
-                        Longitude= 49.78367127477706,
-                        Latitude= 19.057652630685222,
-                        Type = "radio",
-                        Question = "Czy Niggerozaur ma 500 zębów?",
-                        Answear = "Tak"
-                    },
-                    new GeoMarker
-                    {
-                        Id = Guid.NewGuid(),
-                        Longitude= 50.034776755453386,
-                        Latitude= 19.17584109840639,
-                        Type = "radio",
-                        Question = "Czy Auschwitz i Birkenau to, to same miejsce?",
-                        Answear = "Nie"
-                    },
-                    new GeoMarker
-                    {
-                        Id = Guid.NewGuid(),
-                        Longitude= 49.8163527014621,
-                        Latitude= 19.043706150706086,
-                        Type = "radio",
-                        Question = "Czy w Bielsku-Białej jeździły tramwaje?",
-                        Answear = "Tak"
-                    },
-                    new GeoMarker
-                    {
-                        Id = Guid.NewGuid(),
-                        Longitude= 49.97842286306948,
-                        Latitude= 18.930352711897914,
-                        Type = "radio",
-                        Question = "Czy w Parku Pszczyńskim są żubry?",
-                        Answear = "Tak"
-                    },
-                    new GeoMarker
-                    {
-                        Id = Guid.NewGuid(),
-                        Longitude= 49.8212552621617,
-                        Latitude= 19.042701130935647,
-                        Type = "radio",
-                        Question = "Czy Bielsko-Biała należy do województwa Małopolskiego?",
-                        Answear = "Nie"
-                    }
-                };
-                context.GeoMarkers.AddRange(markers);
-                context.SaveChanges();
-            }
-        }
-        public List<GeoMarker> GetAll()
-        {
-            using (var context = new GeoDbContext())
-            {
-                var list = context.GeoMarkers.ToList();
-                return list;
-            }
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public List<QuestionModel> GetQuestion(GeoMarker marker)
+        public List<GeoMarker> GetAll()
         {
-            using (var context = new GeoDbContext())
-            {
-                var result = new List<QuestionModel>
+            var result = _dbContext.GeoMarkers.ToList();
+            return result;
+        }
+
+        public List<MarkerModel> GetAllMarkers()
+        {
+            var markers = _dbContext.GeoMarkers.ToList();
+            var result = _mapper.Map<List<MarkerModel>>(markers);
+            return result;
+        }
+
+        public List<QuestionModel> GetQuestion(double latitude, double longitude)
+        {
+
+            var marker = _dbContext.GeoMarkers.FirstOrDefault(r => r.Latitude == latitude && r.Longitude == longitude);
+
+            if (marker == null) return null;
+
+            var result = new List<QuestionModel>
                 {
                     new QuestionModel
                     {
@@ -84,8 +46,28 @@ namespace GeoAPI.Services
                         Question = marker.Question
                     }
                 };
+            return result;
+        }
+
+        public ResponseModel GetAnswear(AnswerModel dto)
+        {
+            var answear = _dbContext.GeoMarkers.FirstOrDefault(a => a.Id.ToString() == dto.Id);
+
+            if (answear == null) return null;
+
+            var result = new ResponseModel
+            {
+                Id = dto.Id.ToString()
+            };
+
+            if (dto.Answear == answear.Answear)
+            {
+                result.Status = true;
                 return result;
             }
+            result.Status = false;
+            return result;
+
         }
     }
 }

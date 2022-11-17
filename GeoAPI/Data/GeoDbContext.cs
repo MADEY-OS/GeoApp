@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeoAPI.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeoAPI.Data
 {
     public class GeoDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "GeoDatabase");
-        }
-
+        public GeoDbContext(DbContextOptions<GeoDbContext> options) : base(options) { }
         public DbSet<GeoMarker> GeoMarkers { get; set; }
     }
 }

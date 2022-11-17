@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\madej\\Desktop\\GeoAPI\\GeoAPI\\GeoAPI.csproj": {}
+    "H:\\GitHub\\GeoApp\\GeoAPI\\GeoAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\madej\\Desktop\\GeoAPI\\GeoAPI\\GeoAPI.csproj": {
+    "H:\\GitHub\\GeoApp\\GeoAPI\\GeoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\madej\\Desktop\\GeoAPI\\GeoAPI\\GeoAPI.csproj",
+        "projectUniqueName": "H:\\GitHub\\GeoApp\\GeoAPI\\GeoAPI.csproj",
         "projectName": "GeoAPI",
-        "projectPath": "C:\\Users\\madej\\Desktop\\GeoAPI\\GeoAPI\\GeoAPI.csproj",
+        "projectPath": "H:\\GitHub\\GeoApp\\GeoAPI\\GeoAPI.csproj",
         "packagesPath": "C:\\Users\\madej\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\madej\\Desktop\\GeoAPI\\GeoAPI\\obj\\",
+        "outputPath": "H:\\GitHub\\GeoApp\\GeoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,7 +44,15 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.InMemory": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.0, )"
             },

@@ -1,26 +1,35 @@
-﻿using GeoAPI.Data;
+﻿using GeoAPI.Entities;
 using GeoAPI.Interfaces;
 using GeoAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeoAPI.Controllers
 {
-    [Route("api/markers")]
+    [Route("api/")]
     [ApiController]
     public class GeoController : ControllerBase
     {
-        readonly IGeoService _geoService;
+        private readonly IGeoService _geoService;
 
         public GeoController(IGeoService geoService)
         {
             _geoService = geoService;
         }
 
+
         [HttpGet]
         public ActionResult<List<GeoMarker>> GetAll()
         {
-            return Ok(_geoService.GetAll());
+            return Ok(_geoService.GetAllMarkers());
         }
+
+        [Route("markers")]
+        [HttpGet]
+        public ActionResult<List<MarkerModel>> GetAllMarkers()
+        {
+            return Ok(_geoService.GetAllMarkers());
+        }
+
 
         [Route("question")]
         [HttpPost]
@@ -28,13 +37,11 @@ namespace GeoAPI.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var context = new GeoDbContext();
+            var result = _geoService.GetQuestion(dto.Latitude, dto.Longitude);
 
-            var question = context.GeoMarkers.FirstOrDefault(r => r.Latitude == dto.Latitude && r.Longitude == dto.Longitude);
-
-            if (question != null)
+            if (result != null)
             {
-                return Ok(_geoService.GetQuestion(question));
+                return Ok(result);
             }
             return BadRequest("Coordinates does not exists!");
         }
@@ -43,30 +50,16 @@ namespace GeoAPI.Controllers
         [HttpPost]
         public ActionResult GetAnswer([FromBody] AnswerModel dto)
         {
-            var context = new GeoDbContext();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var answear = context.GeoMarkers.FirstOrDefault(a => a.Id.ToString() == dto.Id);
+            var result = _geoService.GetAnswear(dto);
 
-            if (answear != null)
+            if (result != null)
             {
-                var result = new ResponseModel
-                {
-                    Id = dto.Id,
-                };
-
-                if (dto.Answear == answear.Answear)
-                {
-                    result.Status = true;
-                    return Ok(result);
-                }
-                result.Status = false;
-                return NotFound(result);
+                if (result.Status == true) return Ok(result);
+                if (result.Status == false) return NotFound(result);
             }
             return BadRequest("Answear does not exists!");
         }
-
-
-
-
     }
 }

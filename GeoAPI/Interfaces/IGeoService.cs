@@ -1,4 +1,4 @@
-﻿using GeoAPI.Data;
+﻿using GeoAPI.Entities;
 using GeoAPI.Models;
 
 namespace GeoAPI.Interfaces
@@ -6,7 +6,9 @@ namespace GeoAPI.Interfaces
     public interface IGeoService
     {
         public List<GeoMarker> GetAll();
-        public List<QuestionModel> GetQuestion(GeoMarker marker);
+        public List<MarkerModel> GetAllMarkers();
+        public List<QuestionModel> GetQuestion(double Latitude, double Longitude);
+        public ResponseModel GetAnswear(AnswerModel dto);
 
     }
 }
