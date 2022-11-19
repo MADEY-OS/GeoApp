@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAf0gd+a81pk68J29Pzog08AAAAAACAAAAAAAQZgAAAAEAACAAAABA6Ggy0Dhn6qdWfV9RgIvCyY+nYUZXLIEdLdIEHx6YLAAAAAAOgAAAAAIAACAAAAAnQ8gcChO2ZOFcajio8uvY4iZRJZ9jqeRVPIVhXHUyYYAAAADVTdq1j04H+UXvc8xtumOHUuGlmUYaQ1pvZxJMLkvJd9nECay8RC+iXGeUmmp1HvabXG7LFgVOut+Lj2vlTUENVIeOrQ2d8uSMOcXm8mWgj22sbl+UNgAoEZCEZcSyZ4YmYhtngBdS2yh9l7k42V2sR+I0p5RWmCPEYsTZXv31yUAAAACJMG4+qeLK//I5PD7pSRmvKA2gbh/HVu9Kg7Jqhd9q+TQ9em1NaXpDvt37xQ97NnitqISeTGkwdXDtXusdDEXK</EncryptedPassword>
+    <History>True|2022-11-19T12:15:43.4828797Z;True|2022-11-17T22:45:22.5731317+01:00;True|2022-11-17T22:41:46.6181955+01:00;True|2022-11-17T22:41:00.5467197+01:00;True|2022-11-17T22:39:16.7796272+01:00;True|2022-11-17T22:35:56.2428676+01:00;True|2022-11-17T22:32:30.3795404+01:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="GeoAPI.Data.GeoDbContext">
+      <Value>Data Source=tcp:geoapidbserver.database.windows.net,1433%3bInitial Catalog=GeoAPI_db%3bUser Id=IceFlamingo%40geoapidbserver%3bPassword=%40dobeR3D</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

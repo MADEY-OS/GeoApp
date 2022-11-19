@@ -33,8 +33,8 @@ namespace GeoAPI.Seeders
                     new GeoMarker
                     {
                         Id = Guid.NewGuid(),
-                        Longitude= 49.67732001208914,
-                        Latitude= 19.012012477259102,
+                        Latitude= 49.67732001208914,
+                        Longitude= 19.012012477259102,
                         Type = "radio",
                         Question = "Czy Małe Skrzyczne należy do pasma gór Beskidu Śląskiego?",
                         Answear = "Tak"
@@ -42,8 +42,8 @@ namespace GeoAPI.Seeders
                     new GeoMarker
                     {
                         Id = Guid.NewGuid(),
-                        Longitude= 49.78323482948703,
-                        Latitude= 19.057491696550258,
+                        Latitude= 49.78323482948703,
+                        Longitude= 19.057491696550258,
                         Type = "radio",
                         Question = "Czy ATH posiada wydział plastyki i hotelarstwa?",
                         Answear = "Nie"
@@ -51,8 +51,8 @@ namespace GeoAPI.Seeders
                     new GeoMarker
                     {
                         Id = Guid.NewGuid(),
-                        Longitude= 49.8163527014621,
-                        Latitude= 19.043706150706086,
+                        Latitude = 49.8163527014621,
+                        Longitude = 19.043706150706086,
                         Type = "radio",
                         Question = "Czy w Bielsku-Białej jeździły tramwaje?",
                         Answear = "Tak"
@@ -60,8 +60,8 @@ namespace GeoAPI.Seeders
                     new GeoMarker
                     {
                         Id = Guid.NewGuid(),
-                        Longitude= 49.97842286306948,
-                        Latitude= 18.930352711897914,
+                        Latitude = 49.97842286306948,
+                        Longitude = 18.930352711897914,
                         Type = "radio",
                         Question = "Czy w Parku Pszczyńskim są żubry?",
                         Answear = "Tak"
@@ -69,8 +69,8 @@ namespace GeoAPI.Seeders
                     new GeoMarker
                     {
                         Id = Guid.NewGuid(),
-                        Longitude= 49.8212552621617,
-                        Latitude= 19.042701130935647,
+                        Latitude = 49.8212552621617,
+                        Longitude = 19.042701130935647,
                         Type = "radio",
                         Question = "Czy Bielsko-Biała należy do województwa Małopolskiego?",
                         Answear = "Nie"

@@ -46,7 +46,7 @@ namespace GeoAPI.Controllers
             return BadRequest("Coordinates does not exists!");
         }
 
-        [Route("answer")]
+        [Route("answear")]
         [HttpPost]
         public ActionResult GetAnswer([FromBody] AnswerModel dto)
         {
@@ -57,7 +57,7 @@ namespace GeoAPI.Controllers
             if (result != null)
             {
                 if (result.Status == true) return Ok(result);
-                if (result.Status == false) return NotFound(result);
+                if (result.Status == false) return Ok(result);
             }
             return BadRequest("Answear does not exists!");
         }

@@ -32,8 +32,14 @@ namespace GeoAPI.Services
 
         public List<QuestionModel> GetQuestion(double latitude, double longitude)
         {
+            var latitudeUp = latitude + 0.0002;
+            var latitudeDown = latitude - 0.0002;
+            var longitudeLeft = longitude - 0.0002;
+            var longitudeRight = longitude + 0.0002;
 
-            var marker = _dbContext.GeoMarkers.FirstOrDefault(r => r.Latitude == latitude && r.Longitude == longitude);
+            //latitude >= down && latitude <= up && longitude >= left & longitude <= right
+
+            var marker = _dbContext.GeoMarkers.FirstOrDefault(r => r.Latitude >= latitudeDown && r.Latitude <= latitudeUp && r.Longitude >= longitudeLeft && r.Longitude <= longitudeRight);
 
             if (marker == null) return null;
 
